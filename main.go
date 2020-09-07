@@ -1,13 +1,8 @@
 package main
 
-import (
-	// "fmt"
+import (	
 	"github.com/sirupsen/logrus"
 )
-
-// func main() {
-// 	fmt.Println("Я умею запускать программы на go!")
-// }
 
 func main() {
 	logrus.Info("Я умею добавлять зависимости")
