@@ -4,10 +4,10 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type Celsius float32
-type Fahrenheit float32
+// type Celsius float32
+// type Fahrenheit float32
 type HistoryHandler struct{
-	Samples []Fahrenheit
+	Samples []Temper
 	Logger	*logrus.Logger
 }
 
@@ -19,9 +19,12 @@ func CheckAndSave(h *HistoryHandler, t Celsius, n int) {
 	}
 }
 
-func toFahrenheit(t Celsius) Fahrenheit {
-	var temp Fahrenheit	
-	temp = Fahrenheit((t*9/5) + 32)
+type Temper struct {
+	Celsius float32
+	Fahrenheit float32
+}
 
-	return temp
+func toFahrenheit(ter *Temper) float32 {
+	var temp Temper
+	return ((temp.Fahrenheit*(9/5) + 32))	
 }
