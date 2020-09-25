@@ -28,19 +28,19 @@ func toFahrenheit(t interface{}) {
 	c, ok := t.(Celsius)
 
 	if ok {
-		temp:= Celsius(t*((9/5) + 32)
+		temp:= Celsius(c)*((9/5) + 32)
 		fmt.Printf("Работаем с температурой в Цельсиях", temp)
 	}
 
 	if i, ok := t.(int); ok {
-		temp:= t*(9/5) + 32
+		temp:= int(i)*(9/5) + 32
 		fmt.Printf("Работаем с температурой в интах", temp)
 	} 
 	if k,ok := t.(string); ok {
-		conv, _ = strconv.Atoi(k)
+		conv, _ := strconv.Atoi(k)
 		temp:= conv*(9/5)+32
 		fmt.Printf("Работаем со строкой", temp)
 	}
 
-	return temp
+	// return temp
 }
