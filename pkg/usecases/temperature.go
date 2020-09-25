@@ -1,13 +1,15 @@
 package usecases
 
 import (
+	"strconv"
+	"fmt"
 	"github.com/sirupsen/logrus"
 )
 
-// type Celsius float32
-// type Fahrenheit float32
+type Celsius float32
+type Fahrenheit float32
 type HistoryHandler struct{
-	Samples []Temper
+	Samples []Fahrenheit
 	Logger	*logrus.Logger
 }
 
@@ -19,12 +21,26 @@ func CheckAndSave(h *HistoryHandler, t Celsius, n int) {
 	}
 }
 
-type Temper struct {
-	Celsius float32
-	Fahrenheit float32
-}
+func toFahrenheit(t interface{}) {
+	// var temp Fahrenheit
+	// temp = Fahrenheit(t*(9/5) + 32)
 
-func toFahrenheit(ter *Temper) float32 {
-	var temp Temper
-	return ((temp.Fahrenheit*(9/5) + 32))	
+	c, ok := t.(Celsius)
+
+	if ok {
+		temp:= Celsius(t*((9/5) + 32)
+		fmt.Printf("Работаем с температурой в Цельсиях", temp)
+	}
+
+	if i, ok := t.(int); ok {
+		temp:= t*(9/5) + 32
+		fmt.Printf("Работаем с температурой в интах", temp)
+	} 
+	if k,ok := t.(string); ok {
+		conv, _ = strconv.Atoi(k)
+		temp:= conv*(9/5)+32
+		fmt.Printf("Работаем со строкой", temp)
+	}
+
+	return temp
 }
