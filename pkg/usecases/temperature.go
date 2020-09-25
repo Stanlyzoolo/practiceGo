@@ -13,7 +13,7 @@ type HistoryHandler struct{
 	Logger	*logrus.Logger
 }
 
-func CheckAndSave(h *HistoryHandler, t Celsius, n int) {
+func CheckAndSave(h *HistoryHandler, t interface{}, n int) {
 	for i:= 0; i<n; i++ {
 		f:= toFahrenheit(t) + Fahrenheit(i)
 		h.Samples = append(h.Samples, f)
@@ -22,25 +22,18 @@ func CheckAndSave(h *HistoryHandler, t Celsius, n int) {
 }
 
 func toFahrenheit(t interface{}) {
-	// var temp Fahrenheit
-	// temp = Fahrenheit(t*(9/5) + 32)
-
-	c, ok := t.(Celsius)
-
-	if ok {
-		temp:= Celsius(c)*((9/5) + 32)
-		fmt.Printf("Работаем с температурой в Цельсиях", temp)
+	if 	c, ok := t.(Celsius); ok {
+		temp:= c*((9/5) + 32)
+		fmt.Printf("Работаем с температурой в Цельсиях", Fahrenheit(temp))
 	}
 
 	if i, ok := t.(int); ok {
-		temp:= int(i)*(9/5) + 32
-		fmt.Printf("Работаем с температурой в интах", temp)
+		temp:= i*(9/5) + 32
+		fmt.Printf("Работаем с температурой в интах", Fahrenheit(temp))
 	} 
 	if k,ok := t.(string); ok {
 		conv, _ := strconv.Atoi(k)
 		temp:= conv*(9/5)+32
-		fmt.Printf("Работаем со строкой", temp)
+		fmt.Printf("Работаем со строкой", Fahrenheit(temp))
 	}
-
-	// return temp
 }
