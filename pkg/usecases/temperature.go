@@ -21,19 +21,25 @@ func CheckAndSave(h *HistoryHandler, t interface{}, n int) {
 	}
 }
 
-func toFahrenheit(t interface{}) {
+func toFahrenheit(t interface{}) Fahrenheit {
+	var temp Fahrenheit
 	if 	c, ok := t.(Celsius); ok {
-		temp:= c*((9/5) + 32)
-		fmt.Printf("Работаем с температурой в Цельсиях", Fahrenheit(temp))
+		temp := Fahrenheit(c*((9/5) + 32))
+		fmt.Printf("Работаем с температурой в Цельсиях", temp)
+		return temp
 	}
 
-	if i, ok := t.(int); ok {
-		temp:= i*(9/5) + 32
-		fmt.Printf("Работаем с температурой в интах", Fahrenheit(temp))
+	if c, ok := t.(int); ok {
+		temp := Fahrenheit(c*(9/5) + 32)
+		fmt.Printf("Работаем с температурой в интах", temp)
+		return temp
 	} 
-	if k,ok := t.(string); ok {
-		conv, _ := strconv.Atoi(k)
-		temp:= conv*(9/5)+32
-		fmt.Printf("Работаем со строкой", Fahrenheit(temp))
+
+	if c, ok := t.(string); ok {
+		conv, _ := strconv.Atoi(c)
+		temp := Fahrenheit(conv*(9/5)+32)
+		fmt.Printf("Работаем со строкой", temp)
+		return temp
 	}
+	return temp
 }
