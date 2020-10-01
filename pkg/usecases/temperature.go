@@ -23,20 +23,20 @@ func CheckAndSave(h *HistoryHandler, t interface{}, n int) {
 
 func toFahrenheit(t interface{}) Fahrenheit {
 	var temp Fahrenheit
-	if 	c, ok := t.(Celsius); ok {
-		temp = Fahrenheit(c*(9/5) + 32)
-		fmt.Printf("Работаем с температурой в Цельсиях %v", temp)
-	}
-
-	if c, ok := t.(int); ok {
-		temp = Fahrenheit(c*(9/5) + 32)
-		fmt.Printf("Работаем с температурой в интах %v", temp)
-	} 
-
-	if c, ok := t.(string); ok {
-		conv, _ := strconv.Atoi(c)
-		temp = Fahrenheit(conv*(9/5)+32)
-		fmt.Printf("Работаем со строкой %v", temp)
-	}
+	switch c := t.(type) {
+		case Celsius:
+			temp = Fahrenheit(c*(9/5) + 32)	 
+			fmt.Printf("Работаем с температурой в Цельсиях: %v\n", temp)
+		case int:
+			temp = Fahrenheit(c*(9/5) + 32)	 
+			fmt.Printf("Работаем с температурой в интах: %v\n", temp)
+		case nil:        fmt.Printf("Входные данные отсутствуют\n", temp)
+		case string:
+			conv, _ := strconv.Atoi(c)
+			temp = Fahrenheit(conv*(9/5) + 32)	 
+			fmt.Printf("Работаем с температурой со строками: %v\n", temp)
+		default:
+			fmt.Printf("Входные данные не идентифицируются\n", temp)
+		}
 	return temp
 }
