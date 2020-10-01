@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/Stanlyzoolo/practiceGo/pkg/usecases"
+	"github.com/Stanlyzoolo/practiceGo/pkg/datatypes"
 	"os"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/sirupsen/logrus"
@@ -23,6 +24,11 @@ func main() {
 	tempHistoryHandler := &usecases.HistoryHandler{
 		Logger: log,
 		Samples: []usecases.Fahrenheit{},
+	}
+
+	dataHistoryHandler := &datatypes.createQueueObj {
+		DataLogger: datalog,
+		DataSamples: []datatypes.queue,
 	}
 
 	usecases.CheckAndSave(tempHistoryHandler, usecases.Celsius(32), 5)
