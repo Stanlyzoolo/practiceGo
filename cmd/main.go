@@ -26,9 +26,9 @@ func main() {
 		Samples: []usecases.Fahrenheit{},
 	}
 
-	dataHistoryHandler := &datatypes.createQueueObj {
-		DataLogger: datalog,
-		DataSamples: []datatypes.queue,
+	dataHistoryHandler := &datatypes.createQueueObj{
+		Logger: log,
+		Samples: []datatypes.stack[],
 	}
 
 	usecases.CheckAndSave(tempHistoryHandler, usecases.Celsius(32), 5)

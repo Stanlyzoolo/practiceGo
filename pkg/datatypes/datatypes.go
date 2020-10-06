@@ -7,35 +7,44 @@ import (
 )
 
 type dataHistoryHandler struct {
-	DataSamples *list.List
-	DataLogger	*logrus.Logger
+	Samples string
+	Logger	*logrus.Logger
+}
+
+type ListNode struct {
+	Val int
+	Next *ListNode
 }
 
 func createQueueObj (d* dataHistoryHandler) {
-	queue := list.New()
-	var element1 string
-	var element2 string
+	var stack []string
 
-	fmt.Print("Входные данные №1")
-	fmt.Scan(&element1)
+	stack = append(stack, "World!")
+	stack = append(stack, "Hello ")
+	fmt.Print(stack)
 
-	fmt.Print("Входные данные №2")
-	fmt.Scan(&element2)
-
-	
-	e1 := queue.PushFront(element1)
-	e2 := queue.PushBack(element2)
-
-	fmt.Print(queue)
-	
-	for queue.Len() > 0 {
-		queue.Remove(e1)
-		queue.Remove(e2)		
+	n := len(stack)
+	if n>0 {
+		stack = stack [:n-1]
 	}
 
-	for e := queue.Front(); e != nil; e = e.Next() {
-		d.DataSamples = queue
-		d.DataLogger.Info("Работа с очередью FIFO", d.DataSamples, queue)
-		fmt.Print(d.DataSamples)
+	f := (d.DataSamples, stack)
+	d.Samples = append(d.Samples, stack)
+	d.Logger.Info("Info: ", d.Samples, stack)
+}
+
+func createListNodeObj () {
+	obj1 := &ListNode{Val: 1}
+	obj2 := &ListNode{Val: 2}
+	obj1.Next = obj2
+	obj3 := &ListNode{Val: 3}
+	obj2.Next = obj3
+	fmt.Println(obj1.Val, obj2.Val, obj3.Val)
+	iter := obj1
+	for iter != nil {
+		fmt.Println(iter.Val)
+		iter = iter.Next
 	}
 }
+
+
