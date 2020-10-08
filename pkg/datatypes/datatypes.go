@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/sirupsen/logrus"
 	"container/list"
+	"strings"
 )
 
 type dataHistoryHandler struct {
@@ -17,20 +18,20 @@ type ListNode struct {
 }
 
 func createQueueObj (d* dataHistoryHandler) {
-	var stack []string
+		var stack []string
 
-	stack = append(stack, "World!")
-	stack = append(stack, "Hello ")
-	fmt.Print(stack)
+		stack = append(stack, "World!")
+		stack = append(stack, "Hello ")
+		fmt.Print(stack)
 
-	n := len(stack)
-	if n>0 {
-		stack = stack [:n-1]
-	}
-
-	f := (d.DataSamples, stack)
-	d.Samples = append(d.Samples, stack)
-	d.Logger.Info("Info: ", d.Samples, stack)
+		for len(stack) > 0 {
+			stack[0] = ""
+			stack = stack[1:]
+			
+			f := (d.Samples, stack)
+			d.Samples = f
+			d.Logger.Info("Info: ", d.Samples)
+		}
 }
 
 func createListNodeObj () {
@@ -47,4 +48,21 @@ func createListNodeObj () {
 	}
 }
 
+func ReverseString(s string) string {
+	runes := []rune(s)
+	for i, j := 0, len(runes) - 1; i < j; i, j = i + 1, j - 1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
+}
 
+func ReverseRange(s string) string {
+	data :=  strings.Fields(s)
+	for i,j := range data {
+		runes := []rune(j)
+		for i, j := 0, len(runes) - 1; i < j; i, j = i + 1, j - 1 {
+			runes[i], runes[j] = runes[j], runes[i]
+		}
+		return string(runes)
+	}
+}
