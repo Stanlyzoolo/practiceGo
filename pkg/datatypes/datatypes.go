@@ -48,7 +48,7 @@ func createListNodeObj () {
 	}
 }
 
-func ReverseStringOne(s string) string {	
+func ReverseWordOne(s string) string {	
 	newWord := make([]rune, len(s))
 	for i, v  := range s {
 		_ = append(newWord[:len(s)-1-i], v)
@@ -56,7 +56,7 @@ func ReverseStringOne(s string) string {
 	return string(newWord)
 }
 
-func ReverseStringTwo(s string) string {
+func ReverseWordTwo(s string) string {
 	var newWord []rune
 	for _, v := range s {
 		newWord = append([]rune{v}, newWord...)
@@ -66,7 +66,7 @@ func ReverseStringTwo(s string) string {
 }
 
 
-func ReverseRange(s string) []string {
+func ReverseWordsinSentence(s string) []string {
 	data := strings.Fields(s)
 	var newSent []string
 	for _, v := range data {
