@@ -48,21 +48,30 @@ func createListNodeObj () {
 	}
 }
 
-func ReverseString(s string) string {
-	runes := []rune(s)
-	for i, j := 0, len(runes) - 1; i < j; i, j = i + 1, j - 1 {
-		runes[i], runes[j] = runes[j], runes[i]
+func ReverseStringOne(s string) string {	
+	newWord := make([]rune, len(s))
+	for i, v  := range s {
+		_ = append(newWord[:len(s)-1-i], v)
 	}
-	return string(runes)
+	return string(newWord)
 }
 
-func ReverseRange(s string) string {
-	data :=  strings.Fields(s)
-	for i,j := range data {
-		runes := []rune(j)
-		for i, j := 0, len(runes) - 1; i < j; i, j = i + 1, j - 1 {
-			runes[i], runes[j] = runes[j], runes[i]
-		}
-		return string(runes)
+func ReverseStringTwo(s string) string {
+	var newWord []rune
+	for _, v := range s {
+		newWord = append([]rune{v}, newWord...)
 	}
+
+	return string(newWord)
+}
+
+
+func ReverseRange(s string) []string {
+	data := strings.Fields(s)
+	var newSent []string
+	for _, v := range data {
+		fmt.Println(v)
+		newSent = append([]string{v}, newSent...)
+	}
+	return newSent
 }
