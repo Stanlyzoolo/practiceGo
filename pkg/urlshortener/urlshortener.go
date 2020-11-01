@@ -12,7 +12,7 @@ type URLStore struct {
 
 func NewURLStore() *URLStore {
 	return &URLStore{
-		urls: make(map[string]string)
+		urls: make(map[string]string),
 	}
 }
 
