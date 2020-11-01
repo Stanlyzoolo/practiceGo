@@ -1,6 +1,8 @@
 package urlshortener
 
 import (
+	"fmt"
+	"math"
 	"strconv"
 )
 
@@ -10,7 +12,8 @@ type URLStore struct {
 
 func NewURLStore() *URLStore {
 	return &URLStore{
-		urls: make(map[string]string)}
+		urls: make(map[string]string)
+	}
 }
 
 func (s *URLStore) Get(key string) string {
@@ -39,14 +42,10 @@ func (s *URLStore) Put(url string) string {
 }
 
 func genKey(n int) string {
-	var shortURL string
 	if n%2 == 0 {
-		shortURL = "GoodKey №" + strconv.Itoa(n)
+		shortURL := "GoodKey№" + strconv.Itoa(n)
 		return shortURL
-	}
-	if n%2 != 0 {
-		shortURL = "PoorKey №" + strconv.Itoa(n)
-		return shortURL
-	}
+	}	
+	shortURL := "PoorKey№" + strconv.Itoa(n)
 	return shortURL
 }
