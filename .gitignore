@@ -2,3 +2,5 @@
 *.log 
 # Бинарник
 app
+# Настройки json
+settings.json
