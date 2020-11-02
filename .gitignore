@@ -1,6 +1,6 @@
 # Ignore logs
 *.log 
-# Бинарник
+# bin
 app
-# Настройки json
+# settings vs code
 settings.json
