@@ -57,7 +57,7 @@ func (e ErrNegativeSqrt) Error() string {
 }
 
 func Sqrt(x float64) (float64, error) {
-	if math.IsNaN(math.Sqrt(x)) {
+	if x < 0 {
 		return 0, ErrNegativeSqrt(x)
 	}
 	return math.Sqrt(x), nil
