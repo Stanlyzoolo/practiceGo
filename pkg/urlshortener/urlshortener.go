@@ -10,6 +10,8 @@ type URLStore struct {
 	urls map[string]string
 }
 
+type ErrNegativeSqrt float64
+
 func NewURLStore() *URLStore {
 	return &URLStore{
 		urls: make(map[string]string),
@@ -45,7 +47,18 @@ func genKey(n int) string {
 	if n%2 == 0 {
 		shortURL := "GoodKey№" + strconv.Itoa(n)
 		return shortURL
-	}	
+	}
 	shortURL := "PoorKey№" + strconv.Itoa(n)
 	return shortURL
+}
+
+func (e ErrNegativeSqrt) Error() string {
+	return fmt.Sprintf("Нельзя извлечь квадратный корень из отрицательного числа %v", float64(e))
+}
+
+func Sqrt(x float64) (float64, error) {
+	if math.IsNaN(math.Sqrt(x)) {
+		return 0, ErrNegativeSqrt(x)
+	}
+	return math.Sqrt(x), nil
 }
