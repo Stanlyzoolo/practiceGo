@@ -1,18 +1,20 @@
-package channels
+package channel
 
-import "time"
+// import (
+// 	"time"
+// )
 
-var ch = make(chan string)
-
-func readAndWrite (ch chan string) string {
-	time.Sleep(5*time.Second)
-	message := <- ch
-	go writeToChannel(ch, "Hard in study, easy in work")
-	return message
+func readTheChannel(ch chan string) {
+	<-ch
 }
 
-func writeToChannel ( ch chan string, s string) {
-	ch <- s
-	close(ch)
-}
+// func main() {
+// 	ch := make(chan string)
 
+// 	go readTheChannel(ch)
+// 	time.Sleep(5 * time.Second)
+
+// 	go func(ch chan string, s string) {
+// 		ch <- s
+// 	}(ch, "Work or not, tell me please, master?")
+// }

@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/Stanlyzoolo/practiceGo/pkg/usecases"
 	"github.com/Stanlyzoolo/practiceGo/pkg/datatypes"
+	"github.com/Stanlyzoolo/practiceGo/pkg/channels"
 	"os"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/sirupsen/logrus"
@@ -32,4 +33,16 @@ func main() {
 	}
 
 	usecases.CheckAndSave(tempHistoryHandler, usecases.Celsius(32), 5)
+
+	ch := make(chan string)
+
+	go channel.readTheChannel(ch)
+	time.Sleep(5 * time.Second)
+
+	go func(ch chan string, s string) {
+		ch <- s
+	}(ch, "Work or not, tell me please, master?")
+	
+	tempHistoryHandler.Info("входное значение:", s)
+	tempHistoryHandler.info("выходное значение", channel.readThechannel(c))
 }

@@ -2,39 +2,38 @@ package datatypes
 
 import (
 	"fmt"
-	"github.com/sirupsen/logrus"
-	"container/list"
 	"strings"
+	"github.com/sirupsen/logrus"
 )
 
 type dataHistoryHandler struct {
 	Samples string
-	Logger	*logrus.Logger
+	Logger  *logrus.Logger
 }
 
 type ListNode struct {
-	Val int
+	Val  int
 	Next *ListNode
 }
 
-func createQueueObj (d* dataHistoryHandler) {
-		var stack []string
+func createQueueObj(d *dataHistoryHandler) {
+	var stack []string
 
-		stack = append(stack, "World!")
-		stack = append(stack, "Hello ")
-		fmt.Print(stack)
+	stack = append(stack, "World!")
+	stack = append(stack, "Hello ")
+	fmt.Print(stack)
 
-		for len(stack) > 0 {
-			stack[0] = ""
-			stack = stack[1:]
-			
-			f := (d.Samples, stack)
-			d.Samples = f
-			d.Logger.Info("Info: ", d.Samples)
-		}
+	for len(stack) > 0 {
+		stack[0] = ""
+		stack = stack[1:]
+
+		f := (d.Samples)
+		d.Samples = f
+		d.Logger.Info("Info: ", d.Samples)
+	}
 }
 
-func createListNodeObj () {
+func createListNodeObj() {
 	obj1 := &ListNode{Val: 1}
 	obj2 := &ListNode{Val: 2}
 	obj1.Next = obj2
@@ -48,9 +47,9 @@ func createListNodeObj () {
 	}
 }
 
-func ReverseWordOne(s string) string {	
+func ReverseWordOne(s string) string {
 	newWord := make([]rune, len(s))
-	for i, v  := range s {
+	for i, v := range s {
 		_ = append(newWord[:len(s)-1-i], v)
 	}
 	return string(newWord)
@@ -64,7 +63,6 @@ func ReverseWordTwo(s string) string {
 
 	return string(newWord)
 }
-
 
 func ReverseWordsinSentence(s string) []string {
 	data := strings.Fields(s)
