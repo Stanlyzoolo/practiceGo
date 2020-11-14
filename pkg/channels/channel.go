@@ -1,20 +1,12 @@
-package channel
+package channels
 
-// import (
-// 	"time"
-// )
+import (
+	"time"
 
-func readTheChannel(ch chan string) {
-	<-ch
+	"github.com/Stanlyzoolo/practiceGo/pkg/usecases"
+)
+
+func ReadTheChannel(ch chan string, h *usecases.HistoryHandler) {
+	time.Sleep(5 * time.Second)
+	h.Info("В канале ", <-ch)
 }
-
-// func main() {
-// 	ch := make(chan string)
-
-// 	go readTheChannel(ch)
-// 	time.Sleep(5 * time.Second)
-
-// 	go func(ch chan string, s string) {
-// 		ch <- s
-// 	}(ch, "Work or not, tell me please, master?")
-// }
