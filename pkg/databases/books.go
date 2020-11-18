@@ -7,9 +7,9 @@ import (
 )
 
 type Book struct {
-	title    string	
-	price    string	
-	quantity string	
+	title    string
+	price    string
+	quantity string
 }
 
 func ReadingCSV(csvName string) {
@@ -20,14 +20,16 @@ func ReadingCSV(csvName string) {
 
 	reader := csv.NewReader(csvFile)
 	fieldsStruct, _ := reader.ReadAll()
-	
+	booksSlice := []string{}
 	for _, field := range fieldsStruct {
-		book := Book {
-			title: field[0],
-			price: field[1],
+		book := Book{
+			title:    field[0],
+			price:    field[1],
 			quantity: field[2],
 		}
+		booksSlice = append(booksSlice, book.title, book.price, book.quantity)
 		fmt.Printf("The book named `%s` costs %s рублей Р.Б. The quantity is %s\n", book.title, book.price, book.quantity)
 	}
+	fmt.Print(booksSlice)
 
 }
