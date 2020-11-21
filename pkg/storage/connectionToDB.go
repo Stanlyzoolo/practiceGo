@@ -21,14 +21,12 @@ func main() {
 	}
 	defer db.Close()
 
-	usersData, err := db.Exec("insert into users (first_name, last_name, age) values ('Владимир', 'Лепешко', $1)", 
+	_, err = db.Exec("insert into users (first_name, last_name, age) values ('Владимир', 'Лепешко', $1)", 
         32)
     if err != nil{
         panic(err)
     }
 	
-	fmt.Print(usersData)
-
 	rows, err := db.Query("select * from users")
 	if err != nil {
 		panic(err)
@@ -48,7 +46,7 @@ func main() {
 	}
 
 	for _, p := range users {
-		fmt.Println("Результат запроса", p.first_name, p.last_name, p.age)
+		fmt.Println("Результат запроса: ", p.first_name, p.last_name, p.age)
 	}
 	
 }
