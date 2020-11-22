@@ -1,4 +1,4 @@
-package main
+package storage
 
 import (
 	"database/sql"
@@ -13,7 +13,7 @@ type Users struct {
 	age        int
 }
 
-func main() {
+func ConnectionToPostgre() {
 	connStr := "user=postgres password=postgres dbname=freeit sslmode=disable"
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
