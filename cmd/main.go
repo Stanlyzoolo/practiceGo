@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/Stanlyzoolo/practiceGo/pkg/usecases"
 	"github.com/Stanlyzoolo/practiceGo/pkg/datatypes"
+	"github.com/Stanlyzoolo/practiceGo/pkg/storage"
 	"os"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/sirupsen/logrus"
@@ -32,4 +33,7 @@ func main() {
 	}
 
 	usecases.CheckAndSave(tempHistoryHandler, usecases.Celsius(32), 5)
+
+	storage.ConnectionToPostgre()
+	storage.ConnectToRedis()
 }
