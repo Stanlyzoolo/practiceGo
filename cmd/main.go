@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/Stanlyzoolo/practiceGo/pkg/usecases"
-	"github.com/Stanlyzoolo/practiceGo/pkg/datatypes"
+	// "github.com/Stanlyzoolo/practiceGo/pkg/datatypes"
 	"github.com/Stanlyzoolo/practiceGo/pkg/storage"
 	"os"
 	"github.com/kelseyhightower/envconfig"
@@ -27,13 +27,12 @@ func main() {
 		Samples: []usecases.Fahrenheit{},
 	}
 
-	dataHistoryHandler := &datatypes.createQueueObj{
-		Logger: log,
-		Samples: []datatypes.stack[],
-	}
+	// dataHistoryHandler := &datatypes.createQueueObj{
+	// 	Logger: log,
+	// 	Samples: []datatypes.stack[],
+	// }
 
 	usecases.CheckAndSave(tempHistoryHandler, usecases.Celsius(32), 5)
 
-	storage.ConnectionToPostgre()
-	storage.ConnectToRedis()
+	storage.ConnectionToDatabase()
 }

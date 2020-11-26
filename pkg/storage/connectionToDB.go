@@ -13,20 +13,27 @@ type Users struct {
 	age        int
 }
 
-func ConnectionToPostgre() {
+
+func ConnectionToDatabase() {
+	var err error
 	connStr := "user=postgres password=postgres dbname=freeit sslmode=disable"
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		panic(err)
 	}
-	defer db.Close()
+	WrightInDatabase(db, "Stanislav", "Lepeshko", 24)
+	ReadFromDatabase(db)
+}
 
-	_, err = db.Exec("insert into users (first_name, last_name, age) values ('Владимир', 'Лепешко', $1)", 
-        32)
-    if err != nil{
-        panic(err)
-    }
-	
+func WrightInDatabase(db *sql.DB, first_name, last_name string, age int) {
+	_, err := db.Exec("insert into users (first_name, last_name, age) values ($1, $2, $3)",
+		first_name, last_name, age)
+	if err != nil {
+		panic(err)
+	}
+}
+
+func ReadFromDatabase(db *sql.DB) {
 	rows, err := db.Query("select * from users")
 	if err != nil {
 		panic(err)
@@ -48,5 +55,4 @@ func ConnectionToPostgre() {
 	for _, p := range users {
 		fmt.Println("Результат запроса: ", p.first_name, p.last_name, p.age)
 	}
-	
 }
